@@ -1,0 +1,3 @@
+my_key.pub
+.terraform/
+.terraform.lock.hcl
