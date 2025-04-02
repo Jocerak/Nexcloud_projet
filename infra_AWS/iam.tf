@@ -1,5 +1,5 @@
-resource "aws_iam_role" "s3_access_role" {
-  name = "S3AccessRole_v2"
+resource "aws_iam_role" "ec2_access_role" {
+  name = "ec2_access"
 
   assume_role_policy = <<EOF
 {
@@ -33,11 +33,11 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "s3_access_attachment" {
-  role       = aws_iam_role.s3_access_role.name
+  role       = aws_iam_role.ec2_access_role.name
   policy_arn = aws_iam_policy.s3_access_policy.arn
 }
 
 resource "aws_iam_instance_profile" "s3_access_profile" {
   name = "S3AccessProfile"
-  role = aws_iam_role.s3_access_role.name
+  role = aws_iam_role.ec2_access_role.name
 }

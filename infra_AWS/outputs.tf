@@ -27,3 +27,19 @@ output "instance_names" {
   value       = [for instance in aws_instance.project : instance.tags.Name]
   description = "Noms des instances EC2"
 }
+
+output "ansible_inventory" {
+  description = "Contenu de l'inventaire Ansible généré dynamiquement"
+  value = join("\n\n", [
+    for idx, instance in aws_instance.project :
+    "[${var.instance_names[idx]}]\nansible_host=${instance.public_ip} ansible_private_ip=${instance.private_ip} ansible_user=ubuntu"
+  ])
+}
+
+resource "local_file" "ansible_inventory" {
+  content = join("\n\n", [
+    for idx, instance in aws_instance.project :
+    "[${var.instance_names[idx]}]\nansible_host=${instance.public_ip} ansible_private_ip=${instance.private_ip} ansible_user=ubuntu"
+  ])
+  filename = pathexpand(var.ansible_inventory_path)
+}

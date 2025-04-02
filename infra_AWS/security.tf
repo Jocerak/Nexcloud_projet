@@ -18,10 +18,10 @@ resource "aws_security_group" "main_sg" {
   }
 
   ingress {
-  from_port   = 443
-  to_port     = 443
-  protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
 
@@ -32,14 +32,14 @@ resource "aws_security_group" "main_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  
+
 
   tags = {
     Name = "MainSecurityGroup"
   }
 }
 
-resource "aws_key_pair" "deployer_key"{
+resource "aws_key_pair" "deployer_key" {
   key_name   = var.key_pair_name
   public_key = file(var.public_key_path)
 

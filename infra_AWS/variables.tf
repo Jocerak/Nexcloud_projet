@@ -1,15 +1,15 @@
 variable "aws_region" {
-  default     = "eu-west-3"
+  default     = "eu-north-1"
   description = "Région AWS"
 }
 
 variable "ami_id" {
-  default     = "ami-06e02ae7bdac6b938"
+  default     = "ami-0c1ac8a41498c1a9c"
   description = "AMI Ubuntu"
 }
 
 variable "instance_type" {
-  default     = "t2.micro"
+  default     = "t3.micro"
   description = "Type d'instance EC2"
 }
 
@@ -45,7 +45,7 @@ variable "subnet_cidr" {
 }
 
 variable "availability_zone" {
-  default     = "eu-west-3a"
+  default     = "eu-north-1a"
   description = "Zone de disponibilité AWS"
 }
 
@@ -56,11 +56,17 @@ variable "private_ip_base" {
 
 variable "instance_names" {
   #default     = "serveur_ubuntu"
-  type = list(string)
+  type        = list(string)
   description = "Préfixe du nom des instances"
 }
 
 variable "s3_bucket_name" {
   description = "Nom du bucket S3"
   type        = string
+}
+
+variable "ansible_inventory_path" {
+  description = "Chemin du fichier Ansible hosts.yml"
+  type        = string
+  default     = "~/nextcloud_terra/appli_nextcloud/hosts.yml"
 }

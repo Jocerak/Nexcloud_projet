@@ -13,6 +13,8 @@ resource "aws_instance" "project" {
   key_name                    = var.key_pair_name
   iam_instance_profile        = var.iam_instance_profile_name
 
+
+
   tags = {
     Name = "${var.instance_names[count.index]}"
     #Name = "${var.instance_name_prefix}-${count.index + 1}"
